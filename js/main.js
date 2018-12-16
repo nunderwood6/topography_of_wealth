@@ -37,7 +37,7 @@ var controller = new ScrollMagic.Controller();
 //create scene
 var containerScene = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
-	duration: 200,	//scene lasts for scroll distance of 100px
+	duration: 400,	//scene lasts for scroll distance of 100px
 	offset: 0		//start this scene after scrolling for 50px
 })
 	.setTween(tween)
