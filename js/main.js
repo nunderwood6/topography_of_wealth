@@ -1,8 +1,13 @@
 function preloadImage(url){
-	var img=new Image();
+	var img = new Image();
+	img.onload = notify_complete;
 	img.src=url;
 }
 
+function notify_complete()
+{
+    console.log('The image has been loaded into the browser cache.');
+}
 
 var images = [];
 
