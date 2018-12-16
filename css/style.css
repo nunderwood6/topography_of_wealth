@@ -1,0 +1,16 @@
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #trigger {
+    	margin: 500px auto;
+    	outline: 1px dashed orange;
+    }
+
+    #sticky {
+    	padding-left: 25vw;
+    	border: 1px solid black;
+    	font-family: Helvetica;
+    }
