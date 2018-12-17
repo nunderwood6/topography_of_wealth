@@ -1,16 +1,78 @@
 html, body {
         height: 100%;
+        background-color: #111;
+        color: white;
         margin: 0;
         padding: 0;
+        font-family: proxima-nova, sans-serif;
+        font-weight: bold;
     }
 
+p {
+    width: 80%;
+    max-width: 700px;
+    margin: 75px auto;
+    
+}
+
+div.title {
+    width: 100%;
+    margin-top: 30px;
+    font-family: 'Staatliches', cursive;
+}
+
+p.open {
+    margin-bottom: 100px;
+}
+.nowrap{
+    white-space: nowrap;
+}
+
+h1,h4 {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
     #trigger {
-    	margin: 500px auto;
+        width: 100%;
     	outline: 1px dashed orange;
     }
 
-    #sticky {
-    	padding-left: 25vw;
+    #myimg {
+        height: 80vh;
+        width: 129.887641vh;
+        margin: 0 auto;
     	border: 1px solid black;
     	font-family: Helvetica;
+
     }
+
+
+section#text1{
+    position: relative;
+}
+
+div.step {
+    position: relative;
+    color: #111;
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,0.7);
+    text-align: center;
+}
+
+
+
+
+
+
