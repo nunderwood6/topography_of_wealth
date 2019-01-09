@@ -57,17 +57,80 @@ for(var i=10;i<61;i++){
 	disparityImages.push(url);
 }
 ////////////////////////////////////////////////////////////////////////
-//calculate padding
-var bigW = window.innerWidth; //total width
-var imgW = parseFloat(d3.select("#myimg").style("width")); //img width
-var pad= `${(bigW- imgW)/2}px`;
+var bigW,
+	bigH,
+	imgW,
+	imgH;
+
+function sizeFrame() {
+		//get window dimensions
+bigW = window.innerWidth;
+bigH = window.innerHeight;
+aspectRatio = bigW/bigH;
+
+//maintain aspect ratio if possible
+if(aspectRatio>=1.6236){
+	//set img dimensions
+	d3.select("#myimg").style("height", function(d){
+		return bigH*.95 + "px";
+	});
+	d3.select("#myimg").style("width", function(d){
+		var h = parseFloat(d3.select("#myimg").style("height"));
+		return h*1.6236 + "px";
+	});
+
+	//calculate padding
+	imgW = parseFloat(d3.select("#myimg").style("width")); //img width
+	imgH = parseFloat(d3.select("#myimg").style("height")); //img height
+	var pad= `${(bigW- imgW)/2}px`;
+	d3.select("#myimg").style("padding-left", pad);
+} 
+
+//or crop sides
+else {
+	//set img dimensions
+	d3.select("#myimg").style("width", function(d){
+		return bigW + "px";
+	});
+	d3.select("#myimg").style("height", function(d){
+		var w = parseFloat(d3.select("#myimg").style("width"));
+		return w*.6159 + "px";
+	});
+	//calculate padding
+	imgW = parseFloat(d3.select("#myimg").style("width")); //img width
+	imgH = parseFloat(d3.select("#myimg").style("height")); //img height
+	var pad= `${(bigW- imgW)/2}px`;
+	d3.select("#myimg").style("padding-left", pad);
+
+}
+}
+//invoke on load
+sizeFrame();
+
+///resize functions
+window.addEventListener("resize", resizeThrottler, false);
+
+  var resizeTimeout;
+  function resizeThrottler() {
+    // ignore resize events as long as an actualResizeHandler execution is in the queue
+    if ( !resizeTimeout ) {
+      resizeTimeout = setTimeout(function() {
+        resizeTimeout = null;
+        actualResizeHandler();
+     
+       // The actualResizeHandler will execute at a rate of 15fps
+       }, 50);
+    }
+  }
+
+  function actualResizeHandler() {
+    sizeFrame();
+    //way to change pin location?
+  }
 
 
-d3.select("#myimg").style("padding-left", pad);
 
 /////////////////
-
-
 
 
 //create coast image tween
@@ -115,14 +178,15 @@ var controller = new ScrollMagic.Controller();
 
 //first pin img_sequence for duration
 var length = parseFloat(d3.select("#trigger").style("height"));
+var hookT = 1- (bigH-imgH)/bigH*.5;
 
 var pin = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
-	triggerHook: .9,
+	triggerHook: hookT,
 	duration: length
 })
 	.setPin("#img_sequence", {pushFollowers:false})
-	//.addIndicators()
+	.addIndicators()
 	.addTo(controller);
 
 //growth scene

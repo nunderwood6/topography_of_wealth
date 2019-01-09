@@ -1,4 +1,5 @@
 html, body {
+        width: 100%;
         height: 100%;
         background-color: #111;
         color: white;
@@ -30,7 +31,7 @@ p.open {
     white-space: nowrap;
 }
 
-h1,h4 {
+h1,h4,h5 {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 5px;
@@ -44,14 +45,24 @@ h4 {
     font-size: 1.4em;
 }
 
+h5 {
+    font-style: italic;
+}
+
+h5.language span {
+    cursor: pointer;
+}
+
+h5.language span.on {
+    color: #dbb369;
+}
+
     #trigger {
         width: 100%;
     	
     }
 
     #myimg {
-        height: 80vh;
-        width: 129.887641vh;
         margin: 0 auto;
     	border: 1px solid black;
     	font-family: Helvetica;
@@ -60,6 +71,7 @@ h4 {
 
 div#trigger {
     position: relative;
+    border: 1px dotted orange;
 }
 
 section#text1{
@@ -92,7 +104,9 @@ div.spacer {
     height: 70vh;
 }
 
-div.full {
+div.full img{
+    width: 100%;
+    height: auto;
     margin: 0 auto;
     margin-top: 30px;
     text-align: center;
