@@ -14,17 +14,16 @@ function notify_complete()
 var growthImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/growth/000${i}.jpg`;
+	var url = `data/img/growth_big/000${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
 }
 
 for(var i=10;i<16;i++){
-	var url = `data/img/growth/00${i}.jpg`;
+	var url = `data/img/growth_big/00${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
 }
-
 
 //load coast images
 var coastImages = [];
@@ -46,13 +45,13 @@ for(var i=10;i<61;i++){
 var disparityImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/disparity/000${i}.jpg`;
+	var url = `data/img/disparity_big/000${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
 }
 
 for(var i=10;i<61;i++){
-	var url = `data/img/disparity/00${i}.jpg`;
+	var url = `data/img/disparity_big/00${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
 }
@@ -186,7 +185,7 @@ var pin = new ScrollMagic.Scene({
 	duration: length
 })
 	.setPin("#img_sequence", {pushFollowers:false})
-	.addIndicators()
+	//.addIndicators()
 	.addTo(controller);
 
 //growth scene
