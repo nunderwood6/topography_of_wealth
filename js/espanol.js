@@ -26,6 +26,7 @@ var languages = {
 }
 };
 
+console.log(d3.select("#disparity"));
 
 var languageToggle = d3.select("h5.language").selectAll("span");
 

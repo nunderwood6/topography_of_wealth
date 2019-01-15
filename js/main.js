@@ -55,6 +55,22 @@ for(var i=10;i<61;i++){
 	preloadImage(url);
 	disparityImages.push(url);
 }
+
+//load compton images
+
+var comptonImages = [];
+
+for(var i=1;i<10;i++){
+	var url = `data/img/compton/000${i}.jpg`;
+	preloadImage(url);
+	comptonImages.push(url);
+}
+
+for(var i=10;i<61;i++){
+	var url = `data/img/compton/00${i}.jpg`;
+	preloadImage(url);
+	comptonImages.push(url);
+}
 ////////////////////////////////////////////////////////////////////////
 var bigW,
 	bigH,
@@ -158,6 +174,19 @@ var disparity = TweenMax.to(disparityObj, 5,{
 	}
 });
 
+//create compton image tween
+var comptonObj = {curImg: 0};
+
+var compton = TweenMax.to(comptonObj, 5,{
+	curImg: comptonImages.length - 1,
+	roundProps: "curImg",
+	immediateRender: true,
+	ease: Linear.easeNone,
+	onUpdate: function(){
+		$("#myimg").attr("src", comptonImages[comptonObj.curImg]);
+	}
+});
+
 //create growth image tween
 var growthObj = {curImg: 0};
 
@@ -216,15 +245,28 @@ var coastScene = new ScrollMagic.Scene({
 
 //disparity scene
 //set duration equal to height of text step
-var d1 = parseFloat(d3.select("#disparity").style("height"));
+var d2 = parseFloat(d3.select("#disparity").style("height"));
 
 var disparityScene = new ScrollMagic.Scene({
 	triggerElement: "#disparity",
 	triggerHook: .9,
-	duration: d1	//scene lasts for scroll distance of ____
+	duration: d2	//scene lasts for scroll distance of ____
 })
 	.setTween(disparity)
 	//.addIndicators()
+	.addTo(controller);
+
+//compton scene
+//set duration equal to height of text step
+var d3 = parseFloat(d3.select("#compton").style("height"));
+
+var comptonScene = new ScrollMagic.Scene({
+	triggerElement: "#compton",
+	triggerHook: .9,
+	duration: d3	//scene lasts for scroll distance of ____
+})
+	.setTween(compton)
+	.addIndicators()
 	.addTo(controller);
 
 /*
