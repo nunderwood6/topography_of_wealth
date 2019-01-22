@@ -219,12 +219,12 @@ var pin = new ScrollMagic.Scene({
 
 //growth scene
 //set duration equal to height of step
-var d0 = parseFloat(d3.select("#growth").style("height"));
+var dur0 = parseFloat(d3.select("#growth").style("height"));
 
 var growthScene = new ScrollMagic.Scene({
 	triggerElement: "#growth",
 	triggerHook: .9,
-	duration: d0
+	duration: dur0
 })	
 	.setTween(growth)
 	//.addIndicators()
@@ -232,12 +232,12 @@ var growthScene = new ScrollMagic.Scene({
 
 //coast scene
 //set duration equal to height of text step
-var d1 = parseFloat(d3.select("#coast").style("height"));
+var dur1 = parseFloat(d3.select("#coast").style("height"));
 
 var coastScene = new ScrollMagic.Scene({
 	triggerElement: "#coast",
 	triggerHook: .9,
-	duration: d1	//scene lasts for scroll distance of ____
+	duration: dur1	//scene lasts for scroll distance of ____
 })
 	.setTween(coast)
 	//.addIndicators()
@@ -245,12 +245,12 @@ var coastScene = new ScrollMagic.Scene({
 
 //disparity scene
 //set duration equal to height of text step
-var d2 = parseFloat(d3.select("#disparity").style("height"));
+var dur2 = parseFloat(d3.select("#disparity").style("height"));
 
 var disparityScene = new ScrollMagic.Scene({
 	triggerElement: "#disparity",
 	triggerHook: .9,
-	duration: d2	//scene lasts for scroll distance of ____
+	duration: dur2	//scene lasts for scroll distance of ____
 })
 	.setTween(disparity)
 	//.addIndicators()
@@ -258,12 +258,12 @@ var disparityScene = new ScrollMagic.Scene({
 
 //compton scene
 //set duration equal to height of text step
-var d3 = parseFloat(d3.select("#compton").style("height"));
+var dur3 = parseFloat(d3.select("#compton").style("height"));
 
 var comptonScene = new ScrollMagic.Scene({
 	triggerElement: "#compton",
 	triggerHook: .9,
-	duration: d3	//scene lasts for scroll distance of ____
+	duration: dur3	//scene lasts for scroll distance of ____
 })
 	.setTween(compton)
 	.addIndicators()
