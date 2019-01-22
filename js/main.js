@@ -10,17 +10,25 @@ function notify_complete()
     console.log('The image has been loaded into the browser cache.');
 }
 
+//use higher resolution for large screens
+	if(window.innerWidth<=500){
+		var big = "";
+	}else{
+		var big = "_big";
+	}
+
+
 //load growth images
 var growthImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/growth_big/000${i}.jpg`;
+	var url = `data/img/growth${big}/000${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
 }
 
 for(var i=10;i<16;i++){
-	var url = `data/img/growth_big/00${i}.jpg`;
+	var url = `data/img/growth${big}/00${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
 }
@@ -29,13 +37,13 @@ for(var i=10;i<16;i++){
 var coastImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/coast_big/000${i}.jpg`;
+	var url = `data/img/coast${big}/000${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
 }
 
 for(var i=10;i<61;i++){
-	var url = `data/img/coast_big/00${i}.jpg`;
+	var url = `data/img/coast${big}/00${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
 }
@@ -45,13 +53,13 @@ for(var i=10;i<61;i++){
 var disparityImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/disparity_big/000${i}.jpg`;
+	var url = `data/img/disparity${big}/000${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
 }
 
 for(var i=10;i<61;i++){
-	var url = `data/img/disparity_big/00${i}.jpg`;
+	var url = `data/img/disparity${big}/00${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
 }
@@ -80,6 +88,7 @@ var bigW,
 function sizeFrame() {
 		//get window dimensions
 bigW = window.innerWidth;
+console.log("Width = " +bigW);
 bigH = window.innerHeight;
 aspectRatio = bigW/bigH;
 
