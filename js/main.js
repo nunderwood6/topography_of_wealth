@@ -29,13 +29,13 @@ for(var i=10;i<16;i++){
 var coastImages = [];
 
 for(var i=1;i<10;i++){
-	var url = `data/img/coast/000${i}.jpg`;
+	var url = `data/img/coast_big/000${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
 }
 
 for(var i=10;i<61;i++){
-	var url = `data/img/coast/00${i}.jpg`;
+	var url = `data/img/coast_big/00${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
 }
@@ -266,7 +266,7 @@ var comptonScene = new ScrollMagic.Scene({
 	duration: dur3	//scene lasts for scroll distance of ____
 })
 	.setTween(compton)
-	.addIndicators()
+	//.addIndicators()
 	.addTo(controller);
 
 /*
