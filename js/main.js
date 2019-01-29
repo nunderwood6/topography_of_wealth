@@ -95,38 +95,39 @@ aspectRatio = bigW/bigH;
 //maintain aspect ratio if possible
 if(aspectRatio>=1.6236){
 	//set img dimensions
-	d3.select("#myimg").style("height", function(d){
+	d3.select("#imageHolder").style("height", function(d){
 		return bigH*.95 + "px";
 	});
-	d3.select("#myimg").style("width", function(d){
-		var h = parseFloat(d3.select("#myimg").style("height"));
+	d3.select("#imageHolder").style("width", function(d){
+		var h = parseFloat(d3.select("#imageHolder").style("height"));
 		return h*1.6236 + "px";
 	});
 
 	//calculate padding
-	imgW = parseFloat(d3.select("#myimg").style("width")); //img width
-	imgH = parseFloat(d3.select("#myimg").style("height")); //img height
+	imgW = parseFloat(d3.select("#imageHolder").style("width")); //img width
+	imgH = parseFloat(d3.select("#imageHolder").style("height")); //img height
 	var pad= `${(bigW- imgW)/2}px`;
-	d3.select("#myimg").style("padding-left", pad);
+	d3.select("#imageHolder").style("padding-left", pad);
 } 
 
 //or crop sides
 else {
 	//set img dimensions
-	d3.select("#myimg").style("width", function(d){
+	d3.select("#imageHolder").style("width", function(d){
 		return bigW + "px";
 	});
-	d3.select("#myimg").style("height", function(d){
-		var w = parseFloat(d3.select("#myimg").style("width"));
+	d3.select("#imageHolder").style("height", function(d){
+		var w = parseFloat(d3.select("#imageHolder").style("width"));
 		return w*.6159 + "px";
 	});
 	//calculate padding
-	imgW = parseFloat(d3.select("#myimg").style("width")); //img width
-	imgH = parseFloat(d3.select("#myimg").style("height")); //img height
+	imgW = parseFloat(d3.select("#imageHolder").style("width")); //img width
+	imgH = parseFloat(d3.select("#imageHolder").style("height")); //img height
 	var pad= `${(bigW- imgW)/2}px`;
-	d3.select("#myimg").style("padding-left", pad);
-
+	d3.select("#imageHolder").style("padding-left", pad);
 }
+
+
 }
 //invoke on load
 sizeFrame();
@@ -152,11 +153,7 @@ window.addEventListener("resize", resizeThrottler, false);
     //way to change pin location?
   }
 
-
-
 /////////////////
-
-
 //create coast image tween
 var coastObj = {curImg: 0};
 
@@ -166,8 +163,18 @@ var coast = TweenMax.to(coastObj, 5,{
 	immediateRender: true,
 	ease: Linear.easeNone,
 	onUpdate: function(){
+
 		$("#myimg").attr("src", coastImages[coastObj.curImg]);
-	}
+		//fade in labels
+		if(coastObj.curImg==coastImages.length-1){
+			d3.selectAll(".g-Labels").style("opacity", 1);
+		}
+		//fade out labels
+		if(coastObj.curImg==coastImages.length-2){
+			d3.selectAll(".g-Labels").style("opacity", 0);
+		}
+
+}		
 });
 
 //create disparity image tween
@@ -180,6 +187,16 @@ var disparity = TweenMax.to(disparityObj, 5,{
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", disparityImages[disparityObj.curImg]);
+		/*//fade out labels
+		if(disparityObj.curImg==0){
+			d3.selectAll(".g-Labels").style("opacity", 1);
+		}*/
+
+		//fade out labels
+		if(disparityObj.curImg==1){
+			console.log("out");
+			d3.selectAll(".g-Labels").style("opacity", 0);
+		}
 	}
 });
 
