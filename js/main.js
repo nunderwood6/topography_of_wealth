@@ -153,6 +153,19 @@ window.addEventListener("resize", resizeThrottler, false);
     //way to change pin location?
   }
 
+  //set label fadetime in ms
+  var fadeTime = 1000;
+  //for fading in/out labels
+  function switchOpacity(target,goal){
+  		//check if already desired, change if not
+  		if(d3.select(target).style("opacity") != goal){
+  			d3.selectAll(target)
+  				.transition(fadeTime)
+  				.style("opacity", goal);
+  		}
+
+  }
+
 /////////////////
 //create coast image tween
 var coastObj = {curImg: 0};
@@ -163,15 +176,16 @@ var coast = TweenMax.to(coastObj, 5,{
 	immediateRender: true,
 	ease: Linear.easeNone,
 	onUpdate: function(){
-
+		console.log("yup");
 		$("#myimg").attr("src", coastImages[coastObj.curImg]);
 		//fade in labels
-		if(coastObj.curImg==coastImages.length-1){
-			d3.selectAll(".g-Labels").style("opacity", 1);
+		if(coastObj.curImg>=coastImages.length-2){
+			console.log("here");
+			switchOpacity(".g-Labels",1);
 		}
 		//fade out labels
-		if(coastObj.curImg==coastImages.length-2){
-			d3.selectAll(".g-Labels").style("opacity", 0);
+		if(coastObj.curImg<coastImages.length-2){
+			switchOpacity(".g-Labels",0);
 		}
 
 }		
@@ -187,15 +201,14 @@ var disparity = TweenMax.to(disparityObj, 5,{
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", disparityImages[disparityObj.curImg]);
-		/*//fade out labels
-		if(disparityObj.curImg==0){
-			d3.selectAll(".g-Labels").style("opacity", 1);
-		}*/
-
+		//fade in labels
+		if(disparityObj.curImg<=2 && disparityObj.curImg!=0){
+			console.log("here2");
+			switchOpacity(".g-Labels",1);
+		}
 		//fade out labels
-		if(disparityObj.curImg==1){
-			console.log("out");
-			d3.selectAll(".g-Labels").style("opacity", 0);
+		if(disparityObj.curImg>2){
+			switchOpacity(".g-Labels",0);
 		}
 	}
 });
