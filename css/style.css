@@ -17,6 +17,24 @@ p {
     
 }
 
+span.big {
+    font-size: 1em;
+}
+
+span.lyrics {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+span.att {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
 div.title {
     padding-top: 30px;
     height: 80vh;
@@ -60,13 +78,12 @@ h5 a {
 }
 
 h5.language span {
-    color: #000;
     cursor: pointer;
 }
 
 h5.language span.on {
     color: #fff;
-    text-shadow: none;
+    text-shadow: 1px 1px 1px #000;
 }
 
     #trigger {
