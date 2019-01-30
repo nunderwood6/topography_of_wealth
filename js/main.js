@@ -2,6 +2,17 @@
 var currentWidth;
 var newWidth;
 
+//use higher resolution for large screens
+	if(window.innerWidth<=500){
+		var big = "";
+	}else{
+		var big = "_big";
+	}
+
+//load opener image, size based on screen
+d3.select("div.title")
+  .style("background-image", `url("data/img/la_halves${big}.jpg`);
+
 //preload images
 function preloadImage(url){
 	var img = new Image();
@@ -13,8 +24,6 @@ function notify_complete()
 {
     console.log('The image has been loaded into the browser cache.');
 }
-
-console.log(window.innerHeight);
 
 //fix vh bug, use window.height instead
 
@@ -38,17 +47,6 @@ console.log(window.innerHeight);
 	}
 
 	setHeight();
-
-//use higher resolution for large screens
-	if(window.innerWidth<=500){
-		var big = "";
-	}else{
-		var big = "_big";
-	}
-
-//load opener image, size based on screen
-d3.select("div.title")
-  .style("background-image", `url("data/img/la_halves${big}.jpg`);
 
 //load growth images
 var growthImages = [];
@@ -158,7 +156,8 @@ else {
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
 }
-
+	//set tween durations based on window height
+	setDurations();
 
 }
 //invoke on load
@@ -323,10 +322,28 @@ var growth = TweenMax.to(growthObj, 5,{
 //init controller
 var controller = new ScrollMagic.Controller();
 
+var length,
+	hookT,
+	dur0,
+	dur1,
+	dur2,
+	dur3;
+
+
+//set all durations
+ function setDurations(){
+ 	//set pin length
+ 	length = parseFloat(d3.select("#trigger").style("height"));
+	hookT = 1- (bigH-imgH)/bigH*.5;
+	console.log("hookT=" + hookT);
+	//set duration equal to height of step
+	dur0 = parseFloat(d3.select("#growth").style("height"));
+	dur1 = parseFloat(d3.select("#coast").style("height"));
+	dur2 = parseFloat(d3.select("#disparity").style("height"));
+	dur3 = parseFloat(d3.select("#compton").style("height"));
+ }
 
 //first pin img_sequence for duration
-var length = parseFloat(d3.select("#trigger").style("height"));
-var hookT = 1- (bigH-imgH)/bigH*.5;
 
 var pin = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
@@ -338,9 +355,6 @@ var pin = new ScrollMagic.Scene({
 	.addTo(controller);
 
 //growth scene
-//set duration equal to height of step
-var dur0 = parseFloat(d3.select("#growth").style("height"));
-
 var growthScene = new ScrollMagic.Scene({
 	triggerElement: "#growth",
 	triggerHook: .9,
@@ -351,9 +365,6 @@ var growthScene = new ScrollMagic.Scene({
 	.addTo(controller);
 
 //coast scene
-//set duration equal to height of text step
-var dur1 = parseFloat(d3.select("#coast").style("height"));
-
 var coastScene = new ScrollMagic.Scene({
 	triggerElement: "#coast",
 	triggerHook: .9,
@@ -364,9 +375,6 @@ var coastScene = new ScrollMagic.Scene({
 	.addTo(controller);
 
 //disparity scene
-//set duration equal to height of text step
-var dur2 = parseFloat(d3.select("#disparity").style("height"));
-
 var disparityScene = new ScrollMagic.Scene({
 	triggerElement: "#disparity",
 	triggerHook: .9,
@@ -377,9 +385,6 @@ var disparityScene = new ScrollMagic.Scene({
 	.addTo(controller);
 
 //compton scene
-//set duration equal to height of text step
-var dur3 = parseFloat(d3.select("#compton").style("height"));
-
 var comptonScene = new ScrollMagic.Scene({
 	triggerElement: "#compton",
 	triggerHook: .9,
@@ -388,26 +393,4 @@ var comptonScene = new ScrollMagic.Scene({
 	.setTween(compton)
 	//.addIndicators()
 	.addTo(controller);
-
-/*
-
-
-
-
-
-//set duration equal to height of text step
-var d1 = parseFloat(d3.select("#text1").style("height"));
-
-
-//first text scroll
-var firstText = new ScrollMagic.Scene({
-	triggerElement: "#text1",
-	triggerHook:1,
-	duration: d1,
-	reverse: true
-})
-  .setPin("#img_sequence", {pushFollowers:false})
-  .addIndicators()
-  .addTo(controller);
-*/
 
