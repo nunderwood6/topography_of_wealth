@@ -40,7 +40,7 @@ div.title {
     height: 80vh;
     margin: 0 auto;
     font-family: 'Staatliches', cursive;
-    background-image: url("../data/img/la_halves.jpg");
+    background-image: url("../data/img/la_halves_big.jpg");
     background-size: cover;
     text-shadow: 1px 1px 1px #999;
 }
@@ -184,7 +184,7 @@ div#imageHolder {
         font-style:normal;
         font-size:7px;
         text-transform: uppercase;
-        line-height:12px;
+        line-height:7px;
         filter:alpha(opacity=100);
         -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity:1;

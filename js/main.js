@@ -1,3 +1,7 @@
+//listen for changes at breakpoints
+var currentWidth;
+var newWidth;
+
 //preload images
 function preloadImage(url){
 	var img = new Image();
@@ -10,6 +14,8 @@ function notify_complete()
     console.log('The image has been loaded into the browser cache.');
 }
 
+
+
 //use higher resolution for large screens
 	if(window.innerWidth<=500){
 		var big = "";
@@ -17,6 +23,9 @@ function notify_complete()
 		var big = "_big";
 	}
 
+//load opener image, size based on screen
+d3.select("div.title")
+  .style("background-image", `url("data/img/la_halves${big}.jpg`);
 
 //load growth images
 var growthImages = [];
