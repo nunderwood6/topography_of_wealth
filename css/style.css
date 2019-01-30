@@ -6,7 +6,7 @@ html, body {
         margin: 0;
         padding: 0;
         font-family: proxima-nova, sans-serif;
-        font-weight: bold;
+        font-weight: normal;
     }
 
 p {
@@ -18,14 +18,20 @@ p {
 }
 
 div.title {
-    width: 100%;
-    margin-top: 30px;
+    padding-top: 30px;
+    height: 80vh;
+    margin: 0 auto;
     font-family: 'Staatliches', cursive;
+    background-image: url("../data/img/la_halves.jpg");
+    background-size: cover;
+    text-shadow: 1px 1px 1px #999;
 }
 
+
+
 p.open {
-    margin-top: 75px;
-    margin-bottom: 75px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .nowrap{
     white-space: nowrap;
@@ -46,15 +52,21 @@ h4 {
 }
 
 h5 {
-    font-style: italic;
+    font-style: normal;
+}
+
+h5 a {
+    color: #fff;
 }
 
 h5.language span {
+    color: #000;
     cursor: pointer;
 }
 
 h5.language span.on {
-    color: #dbb369;
+    color: #fff;
+    text-shadow: none;
 }
 
     #trigger {
