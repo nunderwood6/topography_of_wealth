@@ -14,7 +14,30 @@ function notify_complete()
     console.log('The image has been loaded into the browser cache.');
 }
 
+console.log(window.innerHeight);
 
+//fix vh bug, use window.height instead
+
+	function setHeight(){
+
+		d3.select("div.title")
+			.style("height",function(){
+				return window.innerHeight*0.8+"px";
+			});
+
+		d3.selectAll("div.spacer")
+			.style("height",function(){
+				return window.innerHeight*0.6+"px";
+			});
+
+		d3.selectAll("section")
+			.style("height",function(){
+				return window.innerHeight*0.75+"px";
+			});
+
+	}
+
+	setHeight();
 
 //use higher resolution for large screens
 	if(window.innerWidth<=500){

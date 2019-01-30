@@ -37,7 +37,6 @@ span.att {
 
 div.title {
     padding-top: 30px;
-    height: 80vh;
     margin: 0 auto;
     font-family: 'Staatliches', cursive;
     background-image: url("../data/img/la_halves_big.jpg");
@@ -125,14 +124,7 @@ div.step p {
 }
 
 
-div.space{
-    height: 80vh;
-}
 
-
-div.spacer {
-    height: 70vh;
-}
 
 div.full img{
     width: 100%;
@@ -143,8 +135,7 @@ div.full img{
 }
 
 section {
-    height: 75vh;
-    min-height: 300px;
+    min-height: 400px;
 }
 
 
@@ -189,13 +180,15 @@ div#imageHolder {
         -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity:1;
         letter-spacing:0.1em;
-        text-align:left;
+        text-align: center;
         color:rgb(255,255,255);
         padding-bottom:0;
         padding-top:0;
         mix-blend-mode:normal;
         height:auto;
         text-shadow: 1px 1px 3px #555;
+        display: flex;
+        justify-content: center;
     }
     #g-coast-Artboard_1 .g-pstyle0 {
         text-align:center;
