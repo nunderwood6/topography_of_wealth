@@ -126,7 +126,7 @@ div#imageHolder {
     box-sizing: content-box;
 }
 
-    .g-Labels {
+    .g-Labels .openerLabels .coastLabels {
         opacity: 0;
     }
 
@@ -153,15 +153,15 @@ div#imageHolder {
         font-family: proxima-nova ,sans-serif;
         font-weight:700;
         font-style:normal;
-        font-size:10px;
+        font-size:7px;
+        text-transform: uppercase;
         line-height:12px;
         filter:alpha(opacity=100);
         -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity:1;
-        letter-spacing:0em;
+        letter-spacing:0.1em;
         text-align:left;
-        color:rgb(242,242,242);
-        text-transform:none;
+        color:rgb(255,255,255);
         padding-bottom:0;
         padding-top:0;
         mix-blend-mode:normal;
@@ -172,4 +172,5 @@ div#imageHolder {
         text-align:center;
     }
     #g-coast-Artboard_1 .g-pstyle1 {
+        text-align: center;
     }

@@ -178,14 +178,23 @@ var coast = TweenMax.to(coastObj, 5,{
 	onUpdate: function(){
 		console.log("yup");
 		$("#myimg").attr("src", coastImages[coastObj.curImg]);
-		//fade in labels
+		//fade in opener labels backwards
+		if(coastObj.curImg<=2 && coastObj.curImg!=0){
+			console.log("here2");
+			switchOpacity(".openerLabels",1);
+		}
+		//fade out opener Labels
+		if(coastObj.curImg>2){
+			switchOpacity(".openerLabels",0);
+		}
+		//fade in coast labels
 		if(coastObj.curImg>=coastImages.length-2){
 			console.log("here");
-			switchOpacity(".g-Labels",1);
+			switchOpacity(".coastLabels",1);
 		}
-		//fade out labels
+		//fade out coast labels
 		if(coastObj.curImg<coastImages.length-2){
-			switchOpacity(".g-Labels",0);
+			switchOpacity(".coastLabels",0);
 		}
 
 }		
@@ -201,15 +210,27 @@ var disparity = TweenMax.to(disparityObj, 5,{
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", disparityImages[disparityObj.curImg]);
-		//fade in labels
+		
+		//fade in coast labels backwards
 		if(disparityObj.curImg<=2 && disparityObj.curImg!=0){
 			console.log("here2");
-			switchOpacity(".g-Labels",1);
+			switchOpacity(".coastLabels",1);
 		}
-		//fade out labels
+		//fade out coast labels
 		if(disparityObj.curImg>2){
-			switchOpacity(".g-Labels",0);
+			switchOpacity(".coastLabels",0);
 		}
+
+		//fade in disparity labels
+		if(disparityObj.curImg>=disparityImages.length-2){
+			switchOpacity(".disparityLabels",1)
+		}
+		//fade out disparity labels backwards
+		if(disparityObj.curImg<disparityImages.length-2){
+			switchOpacity(".disparityLabels",0);
+		}
+		
+
 	}
 });
 
@@ -223,6 +244,25 @@ var compton = TweenMax.to(comptonObj, 5,{
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", comptonImages[comptonObj.curImg]);
+		
+		//fade in disparity labels backwards
+		if(comptonObj.curImg<=2 && comptonObj.curImg!=0){
+			switchOpacity(".disparityLabels",1);
+		}
+		//fade out disparity labels
+		if(comptonObj.curImg>2){
+			switchOpacity(".disparityLabels",0);
+		}
+		
+		//fade in compton labels
+		if(comptonObj.curImg>=comptonImages.length-2){
+			switchOpacity(".comptonLabels",1)
+		}
+		//fade out compton labels backwards
+		if(comptonObj.curImg<comptonImages.length-2){
+			switchOpacity(".comptonLabels",0);
+		}
+		
 	}
 });
 
@@ -236,6 +276,15 @@ var growth = TweenMax.to(growthObj, 5,{
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", growthImages[growthObj.curImg]);
+		//fade in opener labels
+		if(growthObj.curImg>=growthImages.length-2){
+			console.log("here");
+			switchOpacity(".openerLabels",1);
+		}
+		//fade out opener labels
+		if(growthObj.curImg<growthImages.length-2){
+			switchOpacity(".openerLabels",0);
+		}
 	}
 });
 
