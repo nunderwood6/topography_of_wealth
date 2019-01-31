@@ -118,7 +118,7 @@ var bigW,
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////
-
+/*
 var observer;
 //add mutation observer for img_sequence node
 	function vertical(){
@@ -139,7 +139,7 @@ var observer;
 	var observer = new MutationObserver(vertical);
 
 	observer.observe(targetNode, config);
-
+*/
 
 
 
