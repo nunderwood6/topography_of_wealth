@@ -22,7 +22,7 @@ function preloadImage(url){
 
 function notify_complete()
 {
-    console.log('The image has been loaded into the browser cache.');
+    
 }
 
 //fix vh bug, use window.height instead
@@ -159,6 +159,19 @@ else {
 	//set tween durations based on window height
 	setDurations();
 
+	/*
+	//vertically position image sequence
+	function vertical(){
+		d3.select("div#img_sequence")
+	   .style("inset", function(){
+	   		var top =  (bigH - imgH)/2 + "px";
+	   		return top + " auto auto 0px";
+	   });
+	}
+	//timeout to overcome automatic position
+	setTimeout(vertical,1000);
+	*/
+
 }
 //invoke on load
 sizeFrame();
@@ -207,11 +220,9 @@ var coast = TweenMax.to(coastObj, 5,{
 	immediateRender: true,
 	ease: Linear.easeNone,
 	onUpdate: function(){
-		console.log("yup");
 		$("#myimg").attr("src", coastImages[coastObj.curImg]);
 		//fade in opener labels backwards
 		if(coastObj.curImg<=2 && coastObj.curImg!=0){
-			console.log("here2");
 			switchOpacity(".openerLabels",1);
 		}
 		//fade out opener Labels
@@ -220,7 +231,6 @@ var coast = TweenMax.to(coastObj, 5,{
 		}
 		//fade in coast labels
 		if(coastObj.curImg>=coastImages.length-2){
-			console.log("here");
 			switchOpacity(".coastLabels",1);
 		}
 		//fade out coast labels
@@ -244,7 +254,6 @@ var disparity = TweenMax.to(disparityObj, 5,{
 		
 		//fade in coast labels backwards
 		if(disparityObj.curImg<=2 && disparityObj.curImg!=0){
-			console.log("here2");
 			switchOpacity(".coastLabels",1);
 		}
 		//fade out coast labels
@@ -309,7 +318,6 @@ var growth = TweenMax.to(growthObj, 5,{
 		$("#myimg").attr("src", growthImages[growthObj.curImg]);
 		//fade in opener labels
 		if(growthObj.curImg>=growthImages.length-2){
-			console.log("here");
 			switchOpacity(".openerLabels",1);
 		}
 		//fade out opener labels
@@ -343,8 +351,7 @@ var length,
 	dur3 = parseFloat(d3.select("#compton").style("height"));
  }
 
-//first pin img_sequence for duration
-
+//pin img_sequence for duration
 var pin = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
 	triggerHook: hookT,
@@ -353,6 +360,8 @@ var pin = new ScrollMagic.Scene({
 	.setPin("#img_sequence", {pushFollowers:false})
 	//.addIndicators()
 	.addTo(controller);
+
+
 
 //growth scene
 var growthScene = new ScrollMagic.Scene({
