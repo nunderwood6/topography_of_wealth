@@ -163,12 +163,16 @@ function checkLabels(imgW) {
 			console.log(bigLabels);
 			//remove if small and not removed
 			if(imgW<=850 && bigLabels==true){
-			  d3.selectAll(".bigOnly").style("display", "none");
+			  d3.selectAll(".bigOnly")
+			  .transition(1000)
+			  .style("display", "none");
 			  bigLabels==false;
 			}
 			//add if large and removed
 			else if(imgW>850 && bigLabels==false){
-			 d3.selectAll(".bigOnly").style("display", "block");
+			 d3.selectAll(".bigOnly")
+			 .transition(1000)
+			 .style("display", "block");
 			}
 	}
 
