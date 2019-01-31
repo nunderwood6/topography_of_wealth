@@ -13,8 +13,6 @@ var newWidth;
 		
 	}
 
-
-
 //preload images
 function preloadImage(url){
 	var img = new Image();
@@ -361,11 +359,11 @@ var length,
 	duration: length
 })
  	.setPin("#img_sequence", {pushFollowers:false})
-	.addIndicators()
+	//.addIndicators()
 	.addTo(controller);
   
   function resetScene(){
-  	console.log("resetting pinScene");
+ 	//
   	pinScene = pinScene.destroy(true);
   	pinScene = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
@@ -375,10 +373,6 @@ var length,
  	.setPin("#img_sequence", {pushFollowers:false})
 	.addIndicators()
 	.addTo(controller);
-  	/*
-  	pin.removePin(true);
-  	pin.setPin("#img_sequence", {pushFollowers:false});
-  	*/
   }
 
 //growth scene
