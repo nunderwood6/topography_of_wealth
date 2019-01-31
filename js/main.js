@@ -2,6 +2,7 @@
 var currentWidth;
 var newWidth;
 var loadCounter=0;
+var bigLabels=true;
 
 var growth,
 	coast,
@@ -28,7 +29,6 @@ function preloadImage(url){
 
 function notify_complete(){
 	loadCounter++;
-    console.log(loadCounter);
 
     if(loadCounter==15){
     	growth.progress(1).progress(0);
@@ -48,9 +48,11 @@ function notify_complete(){
 	if(loadCounter==195){
 		console.log("Compton done");
 		compton.progress(1).progress(0);
-		switchOpacity(".comptonLabels");
 		growth.progress(1).progress(0);
+		//when all have loaded remove all labels
 		switchOpacity(".openerLabels");
+		switchOpacity(".comptonLabels");
+		
 	}
 }
 
@@ -155,6 +157,22 @@ var bigW,
 	imgH,
 	pinScene;
 
+function checkLabels(imgW) {
+
+			console.log(imgW);
+			console.log(bigLabels);
+			//remove if small and not removed
+			if(imgW<=850 && bigLabels==true){
+			  d3.selectAll(".bigOnly").style("display", "none");
+			  bigLabels==false;
+			}
+			//add if large and removed
+			else if(imgW>850 && bigLabels==false){
+			 d3.selectAll(".bigOnly").style("display", "block");
+			}
+	}
+
+
 ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////
 
@@ -202,6 +220,8 @@ else {
 	d3.select("#imageHolder").style("padding-left", pad);
 }
 
+	checkLabels(imgW);
+
 	//set tween durations based on window height
 	setDurations();
 	//reset pinScene if not first frameSize
@@ -212,6 +232,8 @@ else {
 
 	//store original left as custom attribute
 	if(resizeCounter==1){
+		console.log(imgW);
+
 		d3.selectAll("div.g-Labels,div.g-labels")
 			.attr("originalLeft", function(){
 				return d3.select(this).style("left");
@@ -226,6 +248,10 @@ var originalLeft;
 		//target labels
 		d3.selectAll("div.g-Labels,div.g-labels")
 			.style("left", function(){
+			if(d3.select(this).attr("downtown")=="true"){
+				console.log("downtown");
+				shiftFactor = .003;
+			}
 	var newLeft = parseFloat(d3.select(this).attr("originalLeft")) + (1000-imgW)*shiftFactor + "%";
 				return newLeft;
 			});
