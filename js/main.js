@@ -371,7 +371,7 @@ var length,
 	duration: length
 })
  	.setPin("#img_sequence", {pushFollowers:false})
-	.addIndicators()
+	//.addIndicators()
 	.addTo(controller);
   }
 
