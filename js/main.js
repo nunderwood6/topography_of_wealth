@@ -7,11 +7,13 @@ var newWidth;
 		var big = "";
 	}else{
 		var big = "_big";
+		//load larger opener image if big
+		d3.select("div.title")
+		  .style("background-image", `url("data/img/la_halves${big}.jpg`);
+		
 	}
 
-//load opener image, size based on screen
-d3.select("div.title")
-  .style("background-image", `url("data/img/la_halves${big}.jpg`);
+
 
 //preload images
 function preloadImage(url){
@@ -118,31 +120,6 @@ var bigW,
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////
-/*
-var observer;
-//add mutation observer for img_sequence node
-	function vertical(){
-		console.log("adjust position");
-		d3.select("div#img_sequence")
-	   .style("inset", function(){
-	   		var top =  (bigH - imgH)/2 + "px";
-	   		return top + " auto auto 0px";
-	   });
-	}
-
-	var targetNode = document.getElementById("img_sequence");
-
-	var config = {
-		attributes: true
-	};
-
-	var observer = new MutationObserver(vertical);
-
-	observer.observe(targetNode, config);
-*/
-
-
-
 
 function sizeFrame() {
 		//get window dimensions
@@ -184,7 +161,7 @@ else {
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
 }
-
+	console.log(d3.select("#trigger").style("height"));
 	//set tween durations based on window height
 	setDurations();
 	
@@ -212,8 +189,6 @@ window.addEventListener("resize", resizeThrottler, false);
     sizeFrame();
     //way to change pin location?
   }
-
-
 
 
   //set label fadetime in ms
@@ -369,6 +344,7 @@ var length,
 	dur3 = parseFloat(d3.select("#compton").style("height"));
  }
 
+
  //pin img_sequence for duration
  var pin = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
@@ -376,7 +352,7 @@ var length,
 	duration: length
 })
 	.setPin("#img_sequence", {pushFollowers:false})
-	//.addIndicators()
+	.addIndicators()
 	.addTo(controller);
   
 
