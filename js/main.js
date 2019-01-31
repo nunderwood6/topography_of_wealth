@@ -113,12 +113,16 @@ for(var i=10;i<61;i++){
 var bigW,
 	bigH,
 	imgW,
-	imgH;
+	imgH,
+	pinScene;
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////
+
 
 function sizeFrame() {
 		//get window dimensions
 bigW = window.innerWidth;
-console.log("Width = " +bigW);
 bigH = window.innerHeight;
 aspectRatio = bigW/bigH;
 
@@ -158,7 +162,6 @@ else {
 }
 	//set tween durations based on window height
 	setDurations();
-
 	/*
 	//vertically position image sequence
 	function vertical(){
@@ -196,6 +199,9 @@ window.addEventListener("resize", resizeThrottler, false);
     sizeFrame();
     //way to change pin location?
   }
+
+
+
 
   //set label fadetime in ms
   var fadeTime = 1000;
@@ -337,7 +343,6 @@ var length,
 	dur2,
 	dur3;
 
-
 //set all durations
  function setDurations(){
  	//set pin length
@@ -351,8 +356,8 @@ var length,
 	dur3 = parseFloat(d3.select("#compton").style("height"));
  }
 
-//pin img_sequence for duration
-var pin = new ScrollMagic.Scene({
+ //pin img_sequence for duration
+ var pin = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
 	triggerHook: hookT,
 	duration: length
@@ -360,8 +365,7 @@ var pin = new ScrollMagic.Scene({
 	.setPin("#img_sequence", {pushFollowers:false})
 	//.addIndicators()
 	.addTo(controller);
-
-
+  
 
 //growth scene
 var growthScene = new ScrollMagic.Scene({
@@ -402,4 +406,5 @@ var comptonScene = new ScrollMagic.Scene({
 	.setTween(compton)
 	//.addIndicators()
 	.addTo(controller);
+
 
