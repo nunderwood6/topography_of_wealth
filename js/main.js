@@ -4,6 +4,8 @@ var newWidth;
 var loadCounter=0;
 var bigLabels=true;
 
+currentWidth = window.innerWidth;
+
 var growth,
 	coast,
 	disparity,
@@ -167,8 +169,6 @@ var bigW,
 
 function checkLabels(imgW) {
 
-			console.log(imgW);
-			console.log(bigLabels);
 			//remove if small and not removed
 			if(imgW<=850 && bigLabels==true){
 			  d3.selectAll(".bigOnly")
@@ -196,6 +196,11 @@ function sizeFrame() {
 bigW = window.innerWidth;
 bigH = window.innerHeight;
 aspectRatio = bigW/bigH;
+
+//only fire for width change
+if(currentWidth==bigW){
+	return;
+}
 
 //maintain aspect ratio if possible
 if(aspectRatio>=1.6236){
@@ -263,7 +268,6 @@ var originalLeft;
 			.style("left", function(){
 			//custom shift for downtown
 			if(d3.select(this).attr("downtown")=="true"){
-				console.log("downtown");
 				shiftFactor = .003;
 			}
 
