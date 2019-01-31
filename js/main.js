@@ -197,8 +197,8 @@ bigW = window.innerWidth;
 bigH = window.innerHeight;
 aspectRatio = bigW/bigH;
 
-//only fire for width change
-if(currentWidth==bigW){
+//only fire for width change after first
+if(currentWidth==bigW && resizeCounter != 1){
 	return;
 }
 
