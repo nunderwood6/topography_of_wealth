@@ -22,17 +22,33 @@ var growth,
 //preload images
 function preloadImage(url){
 	var img = new Image();
-	img.onload = notify_complete();
+	img.onload = notify_complete;
 	img.src=url;
 }
 
-function notify_complete()
-{
+function notify_complete(){
 	loadCounter++;
     console.log(loadCounter);
+
     if(loadCounter==15){
-    	//growth.progress(1).progress(0);
+    	growth.progress(1).progress(0);
+    	console.log("loaded growth");
     }
+
+    if(loadCounter==75){
+		console.log("Coast done");
+		coast.progress(1).progress(0);
+	}
+
+	if(loadCounter==135){
+		console.log("Disparity done");
+		disparity.progress(1).progress(0);
+	}
+
+	if(i==195){
+		console.log("Compton done");
+		compton.progress(1).progress(0);
+	}
 }
 
 //fix vh bug, use window.height instead
@@ -96,10 +112,6 @@ for(var i=10;i<61;i++){
 	var url = `data/img/coast${big}/00${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
-	if(i==60){
-		console.log("Coast done");
-		//coast.progress(1).progress(0);
-	}
 }
 
 //load disparity images
@@ -116,10 +128,6 @@ for(var i=10;i<61;i++){
 	var url = `data/img/disparity${big}/00${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
-	if(i==60){
-		console.log("Disparity done");
-		//disparity.progress(1).progress(0);
-	}
 }
 
 //load compton images
@@ -136,10 +144,6 @@ for(var i=10;i<61;i++){
 	var url = `data/img/compton/00${i}.jpg`;
 	preloadImage(url);
 	comptonImages.push(url);
-	if(i==60){
-		console.log("Compton done");
-		//compton.progress(1).progress(0);
-	}
 }
 ////////////////////////////////////////////////////////////////////////
 var bigW,
