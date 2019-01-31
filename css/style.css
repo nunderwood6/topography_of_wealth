@@ -146,7 +146,9 @@ div#imageHolder {
     box-sizing: content-box;
 }
 
-    .g-Labels .openerLabels .coastLabels {
+
+
+    .g-Labels,.g-labels,.openerLabels,.coastLabels {
         opacity: 0;
     }
 

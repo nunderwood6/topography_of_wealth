@@ -1,6 +1,12 @@
 //listen for changes at breakpoints
 var currentWidth;
 var newWidth;
+var loadCounter=0;
+
+var growth,
+	coast,
+	disparity,
+	compton;
 
 //use higher resolution for large screens
 	if(window.innerWidth<=500){
@@ -16,13 +22,17 @@ var newWidth;
 //preload images
 function preloadImage(url){
 	var img = new Image();
-	img.onload = notify_complete;
+	img.onload = notify_complete();
 	img.src=url;
 }
 
 function notify_complete()
 {
-    console.log("Image loaded");
+	loadCounter++;
+    console.log(loadCounter);
+    if(loadCounter==15){
+    	//growth.progress(1).progress(0);
+    }
 }
 
 //fix vh bug, use window.height instead
@@ -48,6 +58,15 @@ function notify_complete()
 
 	setHeight();
 
+
+var tweenRefs = {
+	"growth": growth,
+	"coast": coast,
+	"disparity": disparity,
+	"compton": compton
+};
+
+
 //load growth images
 var growthImages = [];
 
@@ -61,10 +80,8 @@ for(var i=10;i<16;i++){
 	var url = `data/img/growth${big}/00${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
-	if(i==15){
-		console.log("Growth done");
-	}
 }
+
 
 //load coast images
 var coastImages = [];
@@ -81,6 +98,7 @@ for(var i=10;i<61;i++){
 	coastImages.push(url);
 	if(i==60){
 		console.log("Coast done");
+		//coast.progress(1).progress(0);
 	}
 }
 
@@ -100,6 +118,7 @@ for(var i=10;i<61;i++){
 	disparityImages.push(url);
 	if(i==60){
 		console.log("Disparity done");
+		//disparity.progress(1).progress(0);
 	}
 }
 
@@ -119,6 +138,7 @@ for(var i=10;i<61;i++){
 	comptonImages.push(url);
 	if(i==60){
 		console.log("Compton done");
+		//compton.progress(1).progress(0);
 	}
 }
 ////////////////////////////////////////////////////////////////////////
@@ -254,13 +274,15 @@ window.addEventListener("resize", resizeThrottler, false);
   }
 
 /////////////////
+//CREATE ALL TWEENS
+
 //create coast image tween
 var coastObj = {curImg: 0};
 
-var coast = TweenMax.to(coastObj, 5,{
+  coast = TweenMax.to(coastObj, 5,{
 	curImg: coastImages.length - 1,
 	roundProps: "curImg",
-	immediateRender: true,
+	immediateRender: false,
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", coastImages[coastObj.curImg]);
@@ -284,13 +306,14 @@ var coast = TweenMax.to(coastObj, 5,{
 }		
 });
 
+
 //create disparity image tween
 var disparityObj = {curImg: 0};
 
-var disparity = TweenMax.to(disparityObj, 5,{
+	 disparity = TweenMax.to(disparityObj, 5,{
 	curImg: disparityImages.length - 1,
 	roundProps: "curImg",
-	immediateRender: true,
+	immediateRender: false,
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", disparityImages[disparityObj.curImg]);
@@ -320,10 +343,10 @@ var disparity = TweenMax.to(disparityObj, 5,{
 //create compton image tween
 var comptonObj = {curImg: 0};
 
-var compton = TweenMax.to(comptonObj, 5,{
+	 compton = TweenMax.to(comptonObj, 5,{
 	curImg: comptonImages.length - 1,
 	roundProps: "curImg",
-	immediateRender: true,
+	immediateRender: false,
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", comptonImages[comptonObj.curImg]);
@@ -348,11 +371,12 @@ var compton = TweenMax.to(comptonObj, 5,{
 		
 	}
 });
+	 console.log(compton);
 
 //create growth image tween
 var growthObj = {curImg: 0};
 
-var growth = TweenMax.to(growthObj, 5,{
+	 growth = TweenMax.to(growthObj, 5,{
 	curImg: growthImages.length - 1,
 	roundProps: "curImg",
 	immediateRender: true,
@@ -369,6 +393,14 @@ var growth = TweenMax.to(growthObj, 5,{
 		}
 	}
 });
+
+//reduce calculation lagging
+function preCalcTween(targetTween){
+	console.log(targetTween);
+	targetTween.progress(1).progress(0);
+}
+
+
 
 //init controller
 var controller = new ScrollMagic.Controller();
