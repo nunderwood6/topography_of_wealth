@@ -162,15 +162,45 @@ else {
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
 }
-	console.log(d3.select("#trigger").style("height"));
+
 	//set tween durations based on window height
 	setDurations();
-	//reset pin if not first frameSize
+	//reset pinScene if not first frameSize
 	if(resizeCounter !=1){
-		console.log(resizeCounter);
 		resetScene();
+
 	}
+
+	//store original left as custom attribute
+	if(resizeCounter==1){
+		d3.selectAll("div.g-Labels,div.g-labels")
+			.attr("originalLeft", function(){
+				return d3.select(this).style("left");
+			});
+	}
+
+//shift labels right if small
+var shiftFactor = .008333333;
+var originalLeft;
+
+	if(imgW<1000){
+		//target labels
+		d3.selectAll("div.g-Labels,div.g-labels")
+			.style("left", function(){
+	var newLeft = parseFloat(d3.select(this).attr("originalLeft")) + (1000-imgW)*shiftFactor + "%";
+				return newLeft;
+			});
+
+	}
+	///
+/*
 	
+/*	
+	//adjust label position if small
+	if()
+*/
+
+
 	
 }
 //invoke on load
