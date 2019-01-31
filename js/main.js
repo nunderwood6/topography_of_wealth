@@ -50,6 +50,7 @@ function notify_complete(){
 		compton.progress(1).progress(0);
 		switchOpacity(".comptonLabels");
 		growth.progress(1).progress(0);
+		switchOpacity(".openerLabels");
 	}
 }
 
@@ -384,7 +385,7 @@ var growthObj = {curImg: 0};
 	 growth = TweenMax.to(growthObj, 5,{
 	curImg: growthImages.length - 1,
 	roundProps: "curImg",
-	immediateRender: true,
+	immediateRender: false,
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", growthImages[growthObj.curImg]);
