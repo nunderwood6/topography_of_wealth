@@ -47,6 +47,7 @@ function notify_complete(){
 
 	if(loadCounter==195){
 		console.log("Compton done");
+
 		compton.progress(1).progress(0);
 		growth.progress(1).progress(0);
 		//when all have loaded remove all labels
@@ -55,6 +56,10 @@ function notify_complete(){
 		//double check
 		d3.selectAll("g.labels,g.Labels")
 			.style("opacity", 0);
+		
+		//remove load screen
+		d3.select(".loadScreen").remove();
+	
 		
 	}
 }
@@ -208,6 +213,7 @@ if(aspectRatio>=1.6236){
 	imgH = parseFloat(d3.select("#imageHolder").style("height")); //img height
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
+	//d3.select(".loadScreen").style("padding-left", pad);
 } 
 
 //or crop sides
@@ -225,6 +231,7 @@ else {
 	imgH = parseFloat(d3.select("#imageHolder").style("height")); //img height
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
+	//d3.select(".loadScreen").style("padding-left", pad);
 }
 
 	checkLabels(imgW);
