@@ -32,7 +32,7 @@ function notify_complete(){
 
     if(loadCounter==15){
     	growth.progress(1).progress(0);
-    	console.log("loaded growth");
+    	console.log("Growth done");
     }
 
     if(loadCounter==75){
@@ -45,9 +45,11 @@ function notify_complete(){
 		disparity.progress(1).progress(0);
 	}
 
-	if(i==195){
+	if(loadCounter==195){
 		console.log("Compton done");
 		compton.progress(1).progress(0);
+		switchOpacity(".comptonLabels");
+		growth.progress(1).progress(0);
 	}
 }
 
@@ -321,7 +323,6 @@ var disparityObj = {curImg: 0};
 	ease: Linear.easeNone,
 	onUpdate: function(){
 		$("#myimg").attr("src", disparityImages[disparityObj.curImg]);
-		
 		//fade in coast labels backwards
 		if(disparityObj.curImg<=2 && disparityObj.curImg!=0){
 			switchOpacity(".coastLabels",1);
@@ -375,7 +376,7 @@ var comptonObj = {curImg: 0};
 		
 	}
 });
-	 console.log(compton);
+
 
 //create growth image tween
 var growthObj = {curImg: 0};
@@ -398,14 +399,6 @@ var growthObj = {curImg: 0};
 	}
 });
 
-//reduce calculation lagging
-function preCalcTween(targetTween){
-	console.log(targetTween);
-	targetTween.progress(1).progress(0);
-}
-
-
-
 //init controller
 var controller = new ScrollMagic.Controller();
 
@@ -421,7 +414,6 @@ var length,
  	//set pin length
  	length = parseFloat(d3.select("#trigger").style("height"));
 	hookT = 1- (bigH-imgH)/bigH*.5;
-	console.log("hookT=" + hookT);
 	//set duration equal to height of step
 	dur0 = parseFloat(d3.select("#growth").style("height"));
 	dur1 = parseFloat(d3.select("#coast").style("height"));
