@@ -22,7 +22,7 @@ function preloadImage(url){
 
 function notify_complete()
 {
-    
+    console.log("Image loaded");
 }
 
 //fix vh bug, use window.height instead
@@ -61,6 +61,9 @@ for(var i=10;i<16;i++){
 	var url = `data/img/growth${big}/00${i}.jpg`;
 	preloadImage(url);
 	growthImages.push(url);
+	if(i==15){
+		console.log("Growth done");
+	}
 }
 
 //load coast images
@@ -76,6 +79,9 @@ for(var i=10;i<61;i++){
 	var url = `data/img/coast${big}/00${i}.jpg`;
 	preloadImage(url);
 	coastImages.push(url);
+	if(i==60){
+		console.log("Coast done");
+	}
 }
 
 //load disparity images
@@ -92,6 +98,9 @@ for(var i=10;i<61;i++){
 	var url = `data/img/disparity${big}/00${i}.jpg`;
 	preloadImage(url);
 	disparityImages.push(url);
+	if(i==60){
+		console.log("Disparity done");
+	}
 }
 
 //load compton images
@@ -108,6 +117,9 @@ for(var i=10;i<61;i++){
 	var url = `data/img/compton/00${i}.jpg`;
 	preloadImage(url);
 	comptonImages.push(url);
+	if(i==60){
+		console.log("Compton done");
+	}
 }
 ////////////////////////////////////////////////////////////////////////
 var bigW,
