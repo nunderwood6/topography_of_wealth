@@ -121,7 +121,10 @@ var bigW,
 ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////
 
+var resizeCounter= 0;
+
 function sizeFrame() {
+	resizeCounter++;
 		//get window dimensions
 bigW = window.innerWidth;
 bigH = window.innerHeight;
@@ -164,6 +167,12 @@ else {
 	console.log(d3.select("#trigger").style("height"));
 	//set tween durations based on window height
 	setDurations();
+	//reset pin if not first frameSize
+	if(resizeCounter !=1){
+		console.log(resizeCounter);
+		resetScene();
+	}
+	
 	
 }
 //invoke on load
@@ -346,15 +355,31 @@ var length,
 
 
  //pin img_sequence for duration
- var pin = new ScrollMagic.Scene({
+ var pinScene = new ScrollMagic.Scene({
 	triggerElement: "#trigger",
 	triggerHook: hookT,
 	duration: length
 })
-	.setPin("#img_sequence", {pushFollowers:false})
+ 	.setPin("#img_sequence", {pushFollowers:false})
 	.addIndicators()
 	.addTo(controller);
   
+  function resetScene(){
+  	console.log("resetting pinScene");
+  	pinScene = pinScene.destroy(true);
+  	pinScene = new ScrollMagic.Scene({
+	triggerElement: "#trigger",
+	triggerHook: hookT,
+	duration: length
+})
+ 	.setPin("#img_sequence", {pushFollowers:false})
+	.addIndicators()
+	.addTo(controller);
+  	/*
+  	pin.removePin(true);
+  	pin.setPin("#img_sequence", {pushFollowers:false});
+  	*/
+  }
 
 //growth scene
 var growthScene = new ScrollMagic.Scene({
