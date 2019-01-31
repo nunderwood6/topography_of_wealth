@@ -239,13 +239,12 @@ else {
 
 	//store original left as custom attribute
 	if(resizeCounter==1){
-		console.log(imgW);
 
 		d3.selectAll("div.g-Labels,div.g-labels")
 			.attr("originalLeft", function(){
 				return d3.select(this).style("left");
 			});
-	}
+}
 
 //shift labels right if small
 var shiftFactor = .008333333;
@@ -255,13 +254,23 @@ var originalLeft;
 		//target labels
 		d3.selectAll("div.g-Labels,div.g-labels")
 			.style("left", function(){
+			//custom shift for downtown
 			if(d3.select(this).attr("downtown")=="true"){
 				console.log("downtown");
 				shiftFactor = .003;
 			}
+
 	var newLeft = parseFloat(d3.select(this).attr("originalLeft")) + (1000-imgW)*shiftFactor + "%";
 				return newLeft;
 			});
+			//custom shiftUp for eastLA
+			d3.select(".eastLA")
+				.style("top", function(){
+					var newTop = parseFloat(d3.select(this).attr("originalTop")) - (1000-imgW)*.003 + "%";
+					return newTop;
+				});
+
+
 
 	}
 	///
