@@ -119,6 +119,30 @@ var bigW,
 ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////
 
+var observer;
+//add mutation observer for img_sequence node
+	function vertical(){
+		console.log("adjust position");
+		d3.select("div#img_sequence")
+	   .style("inset", function(){
+	   		var top =  (bigH - imgH)/2 + "px";
+	   		return top + " auto auto 0px";
+	   });
+	}
+
+	var targetNode = document.getElementById("img_sequence");
+
+	var config = {
+		attributes: true
+	};
+
+	var observer = new MutationObserver(vertical);
+
+	observer.observe(targetNode, config);
+
+
+
+
 
 function sizeFrame() {
 		//get window dimensions
@@ -160,21 +184,10 @@ else {
 	var pad= `${(bigW- imgW)/2}px`;
 	d3.select("#imageHolder").style("padding-left", pad);
 }
+
 	//set tween durations based on window height
 	setDurations();
-	/*
-	//vertically position image sequence
-	function vertical(){
-		d3.select("div#img_sequence")
-	   .style("inset", function(){
-	   		var top =  (bigH - imgH)/2 + "px";
-	   		return top + " auto auto 0px";
-	   });
-	}
-	//timeout to overcome automatic position
-	setTimeout(vertical,1000);
-	*/
-
+	
 }
 //invoke on load
 sizeFrame();
