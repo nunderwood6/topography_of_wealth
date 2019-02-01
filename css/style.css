@@ -185,9 +185,9 @@ div#imageHolder {
         font-family: proxima-nova ,sans-serif;
         font-weight:700;
         font-style:normal;
-        font-size:7px;
+        font-size:7.5px;
         text-transform: uppercase;
-        line-height:7px;
+        line-height:7.5px;
         filter:alpha(opacity=100);
         -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity:1;

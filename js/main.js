@@ -83,18 +83,26 @@ function notify_complete(){
 			  .style("opacity", 1);
 
 
-		setTimeout(function(){	
-			d3.select("div.scrollDownText")
-			  .transition(1000)
-			  .style("opacity", 0);
-			  }, 1500);
-
-
 		
 	
 		
 	}
 }
+
+//remove scroll down user affordance at certain scroll point
+var removeScroll = window.addEventListener("scroll", function(){
+	var y = window.scrollY;
+	var aboveTrigger = parseFloat(d3.select("div.title").style("height")) + parseFloat(d3.select("p.open").style("height")) + 100 - parseFloat(d3.select("div#img_sequence").style("height")) + window.innerHeight - 10;
+
+	if(y>=aboveTrigger+25){
+		if(d3.select("div.scrollDownText") != undefined)
+		d3.select("div.scrollDownText")
+			  .transition(1000)
+			  .style("opacity", 0);
+	}
+});
+
+
 
 //fix vh bug, use window.height instead
 
