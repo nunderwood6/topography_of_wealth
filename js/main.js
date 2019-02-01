@@ -11,6 +11,21 @@ var growth,
 	disparity,
 	compton;
 
+var preventScroll = function(){
+	var y = window.scrollY;
+	var aboveTrigger = parseFloat(d3.select("div.title").style("height")) + parseFloat(d3.select("p.open").style("height")) + 100 - parseFloat(d3.select("div#img_sequence").style("height")) + window.innerHeight - 10;
+	console.log(y);
+	console.log(aboveTrigger);
+
+
+	if(y>aboveTrigger){
+		window.scroll(0,aboveTrigger);
+	}
+
+}
+
+var noScroll = window.addEventListener("scroll", preventScroll);
+
 //use higher resolution for large screens
 	if(window.innerWidth<=500){
 		var big = "";
@@ -18,8 +33,7 @@ var growth,
 		var big = "_big";
 		//load larger opener image if big
 		d3.select("div.title")
-		  .style("background-image", `url("data/img/la_halves${big}.jpg`);
-		
+		  .style("background-image", `url("data/img/la_halves${big}.jpg`);		
 	}
 
 //preload images
@@ -60,7 +74,15 @@ function notify_complete(){
 			.style("opacity", 0);
 		
 		//remove load screen
-		d3.select(".loadScreen").remove();
+		setTimeout(function(){
+			d3.select(".loadScreen").remove();
+
+			//allow user scroll again
+		window.removeEventListener("scroll", preventScroll);
+		}, 500);
+
+
+		
 	
 		
 	}

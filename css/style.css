@@ -48,8 +48,8 @@ div.loader {
   border: 5px solid #f3f3f3; /* Light grey */
   border-top: 5px solid #3498db; /* Blue */
   border-radius: 50%;
-  width: 25vh;
-  height: 25vh;
+  width: 15vh;
+  height: 15vh;
   margin: 0 auto;
   margin-top: 25%;
   animation: spin 2s linear infinite;
