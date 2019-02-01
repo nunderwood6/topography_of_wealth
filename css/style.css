@@ -151,10 +151,6 @@ section {
 }
 
 
-div.spacer {
-    min-height: 250px;
-}
-
 div#imageHolder {
     position: relative;
     box-sizing: content-box;
