@@ -72,14 +72,22 @@ function notify_complete(){
 		//double check
 		d3.selectAll("g.labels,g.Labels")
 			.style("opacity", 0);
-		
 		//remove load screen
 		setTimeout(function(){
 			d3.select(".loadScreen").remove();
-
 			//allow user scroll again
 		window.removeEventListener("scroll", preventScroll);
 		}, 500);
+
+		d3.select("div.scrollDownText")
+			  .style("opacity", 1);
+
+
+		setTimeout(function(){	
+			d3.select("div.scrollDownText")
+			  .transition(1000)
+			  .style("opacity", 0);
+			  }, 1500);
 
 
 		
@@ -261,7 +269,7 @@ else {
 	//d3.select(".loadScreen").style("padding-left", pad);
 }
 
-	//center loading text
+	//center loading and scroll down text
 	d3.select("p.loadingText")
 		.style("left", function(){
 			var left = imgW/2 - 20;
@@ -271,7 +279,18 @@ else {
 		.style("top", function(){
 			var top = imgH/2+10;
 			return top + "px";
+		});
+
+	d3.select("div.scrollDownText")
+		.style("left", function(){
+			var left = imgW/2 - 50;
+			console.log(left);
+			return left + "px";
 		})
+		.style("top", function(){
+			var top = imgH-20;
+			return top + "px";
+		});
 
 	checkLabels(imgW);
 
