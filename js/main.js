@@ -11,14 +11,14 @@ var growth,
 	disparity,
 	compton;
 
+
 var preventScroll = function(){
 	var y = window.scrollY;
 	var aboveTrigger = parseFloat(d3.select("div.title").style("height")) + parseFloat(d3.select("p.open").style("height")) + 100 - parseFloat(d3.select("div#img_sequence").style("height")) + window.innerHeight - 10;
 	console.log(y);
 	console.log(aboveTrigger);
 
-
-	if(y>aboveTrigger){
+	if(y>=aboveTrigger){
 		window.scroll(0,aboveTrigger);
 	}
 
@@ -260,6 +260,18 @@ else {
 	d3.select("#imageHolder").style("padding-left", pad);
 	//d3.select(".loadScreen").style("padding-left", pad);
 }
+
+	//center loading text
+	d3.select("p.loadingText")
+		.style("left", function(){
+			var left = imgW/2 - 20;
+			console.log(left);
+			return left + "px";
+		})
+		.style("top", function(){
+			var top = imgH/2+10;
+			return top + "px";
+		})
 
 	checkLabels(imgW);
 
