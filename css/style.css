@@ -140,9 +140,9 @@ div.step p {
 
 
 
-div.full img{
+div.full {
     width: 100%;
-    height: auto;
+    height: 500px;
     margin: 0 auto;
     margin-top: 30px;
     text-align: center;
