@@ -142,7 +142,6 @@ div.step p {
 
 div.full {
     width: 100%;
-    height: 500px;
     margin: 0 auto;
     margin-top: 30px;
 }
@@ -152,7 +151,9 @@ section {
 }
 
 
-
+div.spacer {
+    min-height: 250px;
+}
 
 div#imageHolder {
     position: relative;
