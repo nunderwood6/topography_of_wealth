@@ -69,6 +69,8 @@ function notify_complete(){
 		//when all have loaded remove all labels
 		switchOpacity(".openerLabels");
 		switchOpacity(".comptonLabels");
+		switchOpacity(".coastLabels");
+		switchOpacity(".disparityLabels");
 		//double check
 		d3.selectAll("g.labels,g.Labels")
 			.style("opacity", 0);
